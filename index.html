@@ -44,7 +44,7 @@ ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF S
 DAMAGE.
 " />
 <link id="faviconLink" rel="shortcut icon" href="favicon.ico">
-<title>My TiddlyWiki — a non-linear personal web notebook</title>
+<title>AOSOS Master Guide — A hypertextualized bible to Americas One Stop Operating System</title>
 <!--~~ This is a Tiddlywiki file. The points of interest in the file are marked with this pattern ~~--><!--~~ Raw markup ~~-->
 
 </head>
@@ -121,7 +121,15 @@ Error message and password prompt
 
 <li>$:/core</li>
 
+<li>$:/DefaultTiddlers</li>
+
 <li>$:/isEncrypted</li>
+
+<li>$:/SiteSubtitle</li>
+
+<li>$:/SiteTitle</li>
+
+<li>$:/state/tab/sidebar--1835078512</li>
 
 <li>$:/StoryList</li>
 
@@ -130,6 +138,10 @@ Error message and password prompt
 <li>$:/themes/tiddlywiki/snowwhite</li>
 
 <li>$:/themes/tiddlywiki/vanilla</li>
+
+<li>Employability Profile</li>
+
+<li>Logging In</li>
 
 <li>Proof of Concept</li>
 
@@ -7791,10 +7803,23 @@ Error message and password prompt
     }
 }</pre>
 </div>
+<div created="20160830013803618" modified="20160830013808440" title="$:/DefaultTiddlers">
+<pre>ProofOfConcept
+</pre>
+</div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
 </div>
-<div list="[[Proof of Concept]]" title="$:/StoryList">
+<div created="20160830013902911" modified="20160830013955983" title="$:/SiteSubtitle">
+<pre>A hypertextualized bible to Americas One Stop Operating System</pre>
+</div>
+<div created="20160830013846259" modified="20160830013946203" title="$:/SiteTitle">
+<pre>AOSOS Master Guide</pre>
+</div>
+<div created="20160830013821343" modified="20160830013821343" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Recent</pre>
+</div>
+<div list="[[Employability Profile]] [[Logging In]] [[Proof of Concept]]" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -7920,14 +7945,37 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20160830013121630" modified="20160830013259323" tags="" title="Proof of Concept">
+<div created="20160830014514892" modified="20160830015930021" tags="Guides" title="Employability Profile">
+<pre>A guide for creating a complete customer profile in OSOS for Adult and Dislocated Workers. The purpose is to ensure that the customer maximizes the opportunity to secure employment.</pre>
+</div>
+<div created="20160830014208534" modified="20160830020128981" tags="Guides" title="Logging In">
+<pre>A guide for first-time users on accessing OSOS.</pre>
+</div>
+<div created="20160830013121630" modified="20160830020506676" tags="" title="Proof of Concept">
 <pre>&lt;table border=&quot;2&quot;&gt;
 &lt;tr&gt;
 &lt;tr&gt;
 &lt;th&gt;Tiddler Name&lt;/th&gt;
-&lt;th&gt;Print&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
 &lt;th&gt;Video&lt;/th&gt;
-&lt;/tr&gt;</pre>
+&lt;th&gt;Print&lt;/th&gt;
+&lt;/tr&gt;
+&lt;$list filter=&quot;[tag[Guides]]&quot;&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;$link&gt;&lt;&lt;currentTiddler&gt;&gt;&lt;/$link&gt;&lt;/td&gt;
+&lt;td&gt;{{!!text}}&lt;/td&gt;
+&lt;td&gt;&lt;$set name=&quot;myVideo&quot; value={{!!video}}&gt;
+&lt;$link to=&lt;&lt;myVideo&gt;&gt; &gt;Video&lt;/$link&gt;
+&lt;/$set&gt;
+&lt;/td&gt;
+&lt;td&gt;
+&lt;$set name=&quot;printDoc&quot; value={{!!document}}&gt;
+&lt;$link to =&lt;&lt;printDoc&gt;&gt; &gt;Doc&lt;/$link&gt;
+&lt;/$set&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/$list&gt;
+&lt;/table&gt;</pre>
 </div>
 
 </div>
