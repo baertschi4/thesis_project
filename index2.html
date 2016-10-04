@@ -119,6 +119,10 @@ Error message and password prompt
 
 <p>This <a class="tc-tiddlylink-external" href="http://tiddlywiki.com" rel="noopener noreferrer" target="_blank">TiddlyWiki</a> contains the following tiddlers:</p><p><ul>
 
+<li>$:/_tw-scholars/doc/macros/slider_accordion</li>
+
+<li>$:/_tw-scholars/macros/slider+accordion</li>
+
 <li>$:/config/DefaultSidebarTab</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/close-all</li>
@@ -128,6 +132,8 @@ Error message and password prompt
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/home</li>
 
 <li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/import</li>
+
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/permaview</li>
 
 <li>$:/config/TextEditor/EnableToolbar</li>
 
@@ -149,7 +155,23 @@ Error message and password prompt
 
 <li>$:/SiteTitle</li>
 
+<li>$:/state/AOSOS--1732587619</li>
+
+<li>$:/state/AOSOS--2035802533</li>
+
+<li>$:/state/AOSOS--950333249</li>
+
+<li>$:/state/Click here to show/hide the tiddler Testing the slider--2080158861</li>
+
+<li>$:/state/Excise/--985002492/new-title</li>
+
+<li>$:/state/Excise/--985002492/tagnew</li>
+
 <li>$:/state/Link/--726689895/search</li>
+
+<li>$:/state/necessity--1419282369</li>
+
+<li>$:/state/necessity-159965815</li>
 
 <li>$:/state/showeditpreview</li>
 
@@ -185,6 +207,8 @@ Error message and password prompt
 
 <li>$:/view</li>
 
+<li>101</li>
+
 <li>599</li>
 
 <li>Accessing the System</li>
@@ -215,9 +239,13 @@ Error message and password prompt
 
 <li>Displaced Homemaker</li>
 
+<li>Editor's Library</li>
+
 <li>Employability Profile</li>
 
 <li>Employability Profile PDF</li>
+
+<li>Formats</li>
 
 <li>Guide: Accessing The System</li>
 
@@ -229,21 +257,23 @@ Error message and password prompt
 
 <li>LEAP</li>
 
+<li>Linking in WikiText</li>
+
 <li>Logging In</li>
 
 <li>Logging In PDF</li>
 
 <li>LWIA</li>
 
+<li>MakingSlidersWork</li>
+
 <li>Navigating the System</li>
 
 <li>NEG</li>
 
-<li>New Tiddler 1</li>
-
 <li>NYSERDA Green Jobs</li>
 
-<li>Objectives</li>
+<li>objectives</li>
 
 <li>OJT</li>
 
@@ -253,11 +283,19 @@ Error message and password prompt
 
 <li>PDF</li>
 
+<li>problem</li>
+
 <li>Rapid Response</li>
 
 <li>Requesting Access</li>
 
 <li>reveal macro</li>
+
+<li>slider</li>
+
+<li>slider macro fix</li>
+
+<li>slider macro global version</li>
 
 <li>STC</li>
 
@@ -265,13 +303,27 @@ Error message and password prompt
 
 <li>System Requirements</li>
 
+<li>Tagging</li>
+
+<li>Testing the slider</li>
+
+<li>The Memex</li>
+
 <li>Ticket to Work</li>
 
 <li>Trade Act</li>
 
+<li>Transclusion</li>
+
+<li>unwikified</li>
+
 <li>Veterans</li>
 
 <li>Video</li>
+
+<li>Videos</li>
+
+<li>x100</li>
 
 <li>Youth</li>
 
@@ -285,6 +337,367 @@ Error message and password prompt
 <!--~~ Ordinary tiddlers ~~-->
 
 <div id="storeArea" style="display:none;">
+<div about="macros" created="20140719122145804" creator="Alberto Molina Pérez" description="Slider and accordion" modified="20160226204102567" modifier="stevesunypoly" parent="$:/_tw-scholars/doc/macros" tags="[[DesignWrite Experimental]] MakingSlidersWork" title="$:/_tw-scholars/doc/macros/slider_accordion">
+<pre>&lt;hr&gt;
+{{DesignWrite}}
+
+* Imported from http://tw5.scholars.tiddlyspot.com/#%24%3A%2F_tw-scholars%2Fdoc%2Fmacros%2Fslider_accordion 2016-02-12
+* [[TiddlyWiki Playground]] has demo
+* [[Macro Code|$:/_tw-scholars/macros/slider+accordion]]
+&lt;hr&gt;
+
+
+&lt;div class=&quot;&quot;&gt;
+
+&lt;div class=&quot;important&quot;&gt;
+
+The code of the macros have changed and this documentation is no longer up to date.
+
+It will be updated soon.
+
+&lt;/div&gt;
+
+! Introduction
+
+The [[slider and accordion macros|$:/_tw-scholars/macros/slider+accordion]] hide or show their content when clicked.The only difference is their behaviour when using several sliders on the same page:
+
+* The `&lt;&lt;slider&gt;&gt;` macro creates one state tiddler for each new slider, so they can be opened/closed independently of one another;
+* The `&lt;&lt;accordion&gt;&gt;` macro uses a single state tiddler for all the sliders on the same page, thus only one can be open at a time.
+
+They also show next to the caption a link `…` to the original tiddler (if there's one).
+
+! Content and Attributes
+
+The content of the `&lt;&lt;slider&gt;&gt;` and `&lt;&lt;accordion&gt;&gt;` macros is displayed according to the rules given above.
+
+&lt;!--
+|!Attribute |!Description |
+|caption |The slider caption |
+|body |The contents to be shown or hidden. If it is a tiddlers' title, its content is transcluded, else it is displayed as is |
+|heading |The heading level of the slider (defaults to &quot;h1&quot;) |
+|tooltip1 |Show tooltip (defaults to &quot;Click to show the contents of this slider&quot;) |
+|tooltip2 |Hide tooltip (defaults to &quot;Click to hide&quot;) |
+|tooltip3 |Edit tooltip (defaults to &quot;Edit this section&quot;) |
+|state |Set to &quot;popup&quot; to delete the state tiddler on each startup (defaults to &quot;slider&quot;) |
+|retain |Set to &quot;yes&quot; to force the content to be retained even when hidden (defaults to &quot;no&quot;)|
+|animate |Set to &quot;yes&quot; to animate opening and closure (defaults to &quot;no&quot;) |
+|btn-class |The div class to be applied to the slider button (defaults to &quot;invisible&quot;) |
+|btn-style |The span style to be applied to the slider button (defaults to &quot;&quot;) |
+|body-class |The div class to be applied to the body (defaults to &quot;&quot;) |
+|body-style |The span class to be applied to the slider button (defaults to &quot;&quot;) |
+|aria-label-show |Optional Accessibility label for the show button (defaults to &quot;&quot;) |
+|aria-label-hide |Optional Accessibility label for the hide button (defaults to &quot;&quot;) |
+|aria-label-link |Optional Accessibility label for the link (defaults to &quot;&quot;) |
+--&gt;
+
+&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Attribute&lt;/td&gt;
+            &lt;td&gt;Description&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;caption&lt;/td&gt;
+            &lt;td&gt;The slider caption&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;body&lt;/td&gt;
+            &lt;td&gt;The contents to be shown or hidden&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;heading&lt;/td&gt;
+            &lt;td&gt;Optional heading level of the slider (defaults to &quot;h1&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;tooltip1&lt;/td&gt;
+            &lt;td&gt;Optional show tooltip (defaults to &quot;Click to show the contents of this slider&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;tooltip2&lt;/td&gt;
+            &lt;td&gt;Optional hide tooltip (defaults to &quot;Click to hide&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;tooltip3&lt;/td&gt;
+            &lt;td&gt;Optional edit tooltip (defaults to &quot;Edit this section&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;state&lt;/td&gt;
+            &lt;td&gt;Set to &quot;popup&quot; to delete the state tiddler on each startup (defaults to &quot;slider&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;retain&lt;/td&gt;
+            &lt;td&gt;Set to &quot;yes&quot; to force the content to be retained even when hidden (defaults to &quot;no&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;animate&lt;/td&gt;
+            &lt;td&gt;Set to &quot;yes&quot; to animate opening and closure (defaults to &quot;no&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;btn-class&lt;/td&gt;
+            &lt;td&gt;Optional div class to be applied to the slider button (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;btn-style&lt;/td&gt;
+            &lt;td&gt;Optional span style to be applied to the slider button (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;body-class&lt;/td&gt;
+            &lt;td&gt;Optional div class to be applied to the body (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;body-style&lt;/td&gt;
+            &lt;td&gt;Optional span class to be applied to the slider button (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;aria-label-show&lt;/td&gt;
+            &lt;td&gt;Optional Accessibility label for the show button (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;aria-label-hide&lt;/td&gt;
+            &lt;td&gt;Optional Accessibility label for the hide button (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;aria-label-link&lt;/td&gt;
+            &lt;td&gt;Optional Accessibility label for the link (defaults to &quot;&quot;)&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+Retaining the content when hidden can give poor performance since the hidden content requires refresh processing even though it is not displayed. On the other hand, the content can be revealed much more quickly. Note that setting ''animate=&quot;yes&quot;'' will also force ''retain=&quot;yes&quot;''.
+
+
+! Examples
+
+!!Example 1
+
+```
+&lt;&lt;slider &quot;How are you?&quot; &quot;Fine, thanks!&quot; &quot;h3&quot; &gt;&gt;
+```
+Gives this:
+
+&lt;&lt;slider &quot;How are you?&quot; &quot;Fine, thanks!&quot; &quot;h3&quot; &gt;&gt;
+
+!!Example 2
+
+The first level sliders on the &quot;Features&quot; tab are created with the following code (see [[tiddler|$:/_tw-scholars/tab/features]]) :
+
+```
+!Features
+
+&lt;$list filter=&quot;[[$:/_tw-scholars/tab/features]listed[parent]!has[draft.of]sort[description]]&quot;&gt;
+
+&lt;$macrocall $name=&quot;accordion&quot; caption={{!!description}} body={{!!title}} heading=&quot;h2&quot; state=&quot;popup&quot;/&gt;
+
+&lt;/$list&gt;
+```
+
+&lt;/div&gt;</pre>
+</div>
+<div created="20140701151337910" creator="Alberto Molina Pérez" icon="$:/_images/system" modified="20160921191705292" modifier="stevesunypoly" tags="$:/tags/Macro MakingSlidersWork" title="$:/_tw-scholars/macros/slider+accordion">
+<pre>\define text(body,alt-body)
+
+$alt-body$
+
+$body$
+
+\end
+\define tiddler(body,alt-body)
+
+$alt-body$
+
+&lt;$transclude tiddler=&quot;$body$&quot;/&gt;
+
+\end
+\define sliderCode(bodyType,stateText,topoi,caption,body,heading:&quot;h1&quot;,retain:&quot;no&quot;,animate:&quot;no&quot;,btn-class:&quot;btn-invisible&quot;,btn-pressed-class:&quot;btn-invisible&quot;,btn-style:&quot;&quot;,btn-pressed-style:&quot;&quot;,body-class:&quot;&quot;,body-style:&quot;&quot;,btn-tooltip:&quot;Click to show the contents of this slider&quot;,btn-pressed-tooltip:&quot;Click to hide&quot;,link-tooltip,link,filter,alt-body)
+&lt;$reveal type=&quot;nomatch&quot; state=&lt;&lt;qualify '$:/state$topoi$'&gt;&gt; text=&quot;$stateText$&quot;&gt;
+    &lt;$heading$&gt;
+        &lt;span title=&quot;$btn-tooltip$&quot;&gt;
+                &lt;$button set=&lt;&lt;qualify '$:/state$topoi$'&gt;&gt; setTo=&quot;$stateText$&quot; class=&quot;$btn-class$&quot; style=&quot;$btn-style$&quot;&gt;
+                    &lt;small&gt;&lt;small&gt;{{$:/core/images/right-arrow}}&lt;/small&gt;&lt;/small&gt; $caption$
+                &lt;/$button&gt;
+        &lt;/span&gt;
+    &lt;/$heading$&gt;
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;qualify '$:/state$topoi$'&gt;&gt; text=&quot;$stateText$&quot;&gt;
+    &lt;$heading$&gt;
+        &lt;span title=&quot;$btn-pressed-tooltip$&quot;&gt;
+                &lt;$button set=&lt;&lt;qualify '$:/state$topoi$'&gt;&gt; setTo=&quot;&quot; class=&quot;$btn-pressed-class$&quot; style=&quot;$btn-pressed-style$&quot;&gt;
+                    &lt;small&gt;{{$:/core/images/down-arrow}}&lt;/small&gt;$caption$
+                &lt;/$button&gt;&lt;$link to='$body$'&gt;$link$&lt;/$link&gt;
+        &lt;/span&gt;
+    &lt;/$heading$&gt;
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&lt;&lt;qualify '$:/state$topoi$'&gt;&gt; text=&quot;$stateText$&quot; retain=&quot;$retain$&quot; animate=&quot;$animate$&quot;&gt;
+&lt;div class=&quot;$body-class$&quot;&gt;
+&lt;span style=&quot;$body-style$&quot;&gt;
+
+    &lt;&lt;$bodyType$ &quot;$body$&quot; &quot;$alt-body$&quot;&gt;&gt;
+
+&lt;/span&gt;
+&lt;/div&gt;
+&lt;/$reveal&gt;
+
+\end
+
+
+
+
+\define slider(caption,body,heading,retain:&quot;no&quot;,animate:&quot;no&quot;,btn-class:&quot;btn-invisible&quot;,btn-pressed-class:&quot;btn-invisible&quot;,btn-style:&quot;&quot;,btn-pressed-style:&quot;&quot;,body-class:&quot;&quot;,body-style:&quot;&quot;,btn-tooltip,btn-pressed-tooltip,format:&quot;&quot;,template:&quot;&quot;,link,link-tooltip:&quot;Open this section&quot;,alt-body)
+&lt;$reveal type=&quot;nomatch&quot; state=&quot;$body$!!modified&quot; text=&quot;&quot;&gt;
+    &lt;$reveal type=&quot;match&quot; state=&quot;$body$!!$caption$&quot; text=&quot;&quot;&gt;
+        &lt;$macrocall $name=&quot;sliderCode&quot; 
+            bodyType=&quot;tiddler&quot; 
+            stateText={{!!modified}}  
+            topoi={{!!modified}}
+            caption=&quot;$caption$&quot; 
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            link=&quot;$link$&quot;
+            link-tooltip=&quot;$link-tooltip$&quot; 
+            alt-body=&quot;$alt-body$&quot; 
+        /&gt;
+    &lt;/$reveal&gt;
+    &lt;$reveal type=&quot;nomatch&quot; state=&quot;$body$!!$caption$&quot; text=&quot;&quot;&gt;
+        &lt;$macrocall $name=&quot;sliderCode&quot; 
+            bodyType=&quot;tiddler&quot; 
+            stateText={{!!modified}}  
+            topoi={{!!modified}}
+            caption=&quot;&lt;$view tiddler='$body$' field='$caption$' format='$format$' template='$template$'/&gt;&quot;
+            body=&quot;$body$&quot;
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            link=&quot;$link$&quot;
+            link-tooltip=&quot;$link-tooltip$&quot; 
+            alt-body=&quot;$alt-body$&quot; 
+        /&gt;
+    &lt;/$reveal&gt;
+&lt;/$reveal&gt;
+&lt;$reveal type=&quot;match&quot; state=&quot;$body$!!modified&quot; text=&quot;&quot;&gt;
+    &lt;$macrocall $name=&quot;sliderCode&quot; 
+        bodyType=&quot;text&quot; 
+        stateText=&quot;$caption$&quot;  
+        topoi=&quot;/$caption$&quot;
+        caption=&quot;$caption$&quot; 
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            alt-body=&quot;$alt-body$&quot; 
+    /&gt;
+&lt;/$reveal&gt;
+\end
+
+
+\define accordion(caption,body,heading,retain:&quot;no&quot;,animate:&quot;no&quot;,btn-class:&quot;btn-invisible&quot;,btn-pressed-class:&quot;btn-invisible&quot;,btn-style:&quot;&quot;,btn-pressed-style:&quot;&quot;,body-class:&quot;&quot;,body-style:&quot;&quot;,btn-tooltip,btn-pressed-tooltip,format:&quot;&quot;,template:&quot;&quot;,link:&quot;&lt;small&gt;&lt;small&gt; …&lt;/small&gt;&lt;/small&gt;&quot;,link-tooltip:&quot;Open this section&quot;,alt-body)
+
+&lt;$reveal type=&quot;nomatch&quot; state=&quot;$body$!!modified&quot; text=&quot;&quot;&gt;
+    &lt;$reveal type=&quot;match&quot; state=&quot;$body$!!$caption$&quot; text=&quot;&quot;&gt;
+
+        &lt;$macrocall $name=&quot;sliderCode&quot; 
+            bodyType=&quot;tiddler&quot; 
+            stateText={{!!modified}}  
+            topoi=&quot;&quot;
+            caption=&quot;$caption$&quot; 
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            link=&quot;$link$&quot;
+            link-tooltip=&quot;$link-tooltip$&quot; 
+            alt-body=&quot;$alt-body$&quot;
+        /&gt;
+
+    &lt;/$reveal&gt;
+    &lt;$reveal type=&quot;nomatch&quot; state=&quot;$body$!!$caption$&quot; text=&quot;&quot;&gt;
+
+        &lt;$macrocall $name=&quot;sliderCode&quot; 
+            bodyType=&quot;tiddler&quot; 
+            stateText={{!!modified}}  
+            topoi=&quot;&quot;
+            caption=&quot;&lt;$view tiddler='$body$' field='$caption$' format='$format$' template='$template$'/&gt;&quot;
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            link=&quot;$link$&quot;
+            link-tooltip=&quot;$link-tooltip$&quot; 
+            alt-body=&quot;$alt-body$&quot;
+        /&gt;
+
+    &lt;/$reveal&gt;
+&lt;/$reveal&gt;
+
+&lt;$reveal type=&quot;match&quot; state=&quot;$body$!!modified&quot; text=&quot;&quot;&gt;
+
+    &lt;$macrocall $name=&quot;sliderCode&quot; 
+        bodyType=&quot;text&quot; 
+        stateText=&quot;$caption$&quot;  
+        topoi=&quot;&quot;
+        caption=&quot;$caption$&quot; 
+            body=&quot;$body$&quot;
+            heading=&quot;$heading$&quot;
+            retain=&quot;$retain$&quot;
+            animate=&quot;$animate$&quot;
+            btn-class=&quot;$btn-class$&quot;
+            btn-pressed-class=&quot;$btn-pressed-class$&quot;
+            btn-style=&quot;$btn-style$&quot;
+            btn-pressed-style=&quot;$btn-pressed-style$&quot;
+            body-class=&quot;$body-class$&quot;
+            body-style=&quot;$body-style$&quot;
+            btn-tooltip=&quot;$btn-tooltip$&quot;
+            btn-pressed-tooltip=&quot;$btn-pressed-tooltip$&quot;
+            alt-body=&quot;$alt-body$&quot;
+    /&gt;
+&lt;/$reveal&gt;
+\end
+</pre>
+</div>
 <div created="20160920180854931" modified="20160920180854931" title="$:/config/DefaultSidebarTab">
 <pre>$:/core/ui/SideBar/Recent</pre>
 </div>
@@ -298,6 +711,9 @@ Error message and password prompt
 <pre>show</pre>
 </div>
 <div created="20160913184049794" modified="20160913184049794" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/import">
+<pre>show</pre>
+</div>
+<div created="20160928013835909" modified="20160928013835909" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/permaview">
 <pre>show</pre>
 </div>
 <div created="20160920180901872" modified="20160920180921919" title="$:/config/TextEditor/EnableToolbar">
@@ -7957,15 +8373,14 @@ Error message and password prompt
     }
 }</pre>
 </div>
-<div created="20160830013803618" modified="20160919202709978" title="$:/DefaultTiddlers">
-<pre>[[Basic User Guide]]
-[[OSOS Guides by Program]]
+<div created="20160830013803618" modified="20160928012244766" title="$:/DefaultTiddlers">
+<pre>[[objectives]]
 </pre>
 </div>
 <div status="complete" title="$:/Import">
 <pre>The following tiddlers were imported:
 
-# [[reveal macro]]</pre>
+# [[Transclusion]]</pre>
 </div>
 <div title="$:/isEncrypted">
 <pre>no</pre>
@@ -8084,8 +8499,32 @@ very-muted-foreground: #888888</pre>
 <div created="20160830013846259" modified="20160830013946203" title="$:/SiteTitle">
 <pre>AOSOS Master Guide</pre>
 </div>
+<div created="20160921191926078" modified="20160928190646357" title="$:/state/AOSOS--1732587619">
+<pre></pre>
+</div>
+<div created="20160921191907374" modified="20160921191908644" title="$:/state/AOSOS--2035802533">
+<pre></pre>
+</div>
+<div created="20160921192335807" modified="20160921192400469" title="$:/state/AOSOS--950333249">
+<pre></pre>
+</div>
+<div created="20160921191038575" modified="20160921191215615" title="$:/state/Click here to show/hide the tiddler Testing the slider--2080158861">
+<pre></pre>
+</div>
+<div created="20160921171327104" modified="20160921171327104" title="$:/state/Excise/--985002492/new-title">
+<pre>Necessity is the mother of invention</pre>
+</div>
+<div created="20160921171338423" modified="20160921171338423" title="$:/state/Excise/--985002492/tagnew">
+<pre>yes</pre>
+</div>
 <div created="20160913183824215" modified="20160913183828230" title="$:/state/Link/--726689895/search">
 <pre></pre>
+</div>
+<div created="20160921191342825" modified="20160928190748123" title="$:/state/necessity--1419282369">
+<pre></pre>
+</div>
+<div created="20160921191526585" modified="20160928192253272" title="$:/state/necessity-159965815">
+<pre>necessity</pre>
 </div>
 <div created="20160913183833694" modified="20160921004421034" title="$:/state/showeditpreview">
 <pre>yes</pre>
@@ -8105,16 +8544,16 @@ very-muted-foreground: #888888</pre>
 <div created="20160920181103322" modified="20160920181114953" title="$:/state/tab--959111941">
 <pre>$:/core/ui/ControlPanel/TiddlerFields</pre>
 </div>
-<div created="20160913142539033" modified="20160920181148230" title="$:/state/tab-1749438307">
-<pre>$:/core/ui/ControlPanel/Appearance</pre>
+<div created="20160913142539033" modified="20160928012238706" title="$:/state/tab-1749438307">
+<pre>$:/core/ui/ControlPanel/Info</pre>
 </div>
-<div created="20160830013821343" modified="20160920180913007" title="$:/state/tab/sidebar--1835078512">
-<pre>$:/core/ui/SideBar/Recent</pre>
+<div created="20160830013821343" modified="20160928190600374" title="$:/state/tab/sidebar--1835078512">
+<pre>$:/core/ui/SideBar/Open</pre>
 </div>
 <div created="20160913142812425" modified="20160913142825001" title="$:/state/tabs/controlpanel/toolbars-1345989671">
 <pre>$:/core/ui/ControlPanel/Toolbars/ViewToolbar</pre>
 </div>
-<div list="[[Basic User Guide]] [[Accessing the System]] Guides [[OSOS Guides by Program]]" title="$:/StoryList">
+<div list="objectives" title="$:/StoryList">
 <pre></pre>
 </div>
 <div plugin-type="info" title="$:/temp/info-plugin" type="application/json">
@@ -8131,7 +8570,7 @@ very-muted-foreground: #888888</pre>
     }
 }</pre>
 </div>
-<div created="20160913185513835" modified="20160921020314994" title="$:/temp/search">
+<div created="20160913185513835" modified="20160928191718828" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20160913142803074" modified="20160913142805393" title="$:/theme">
@@ -8252,6 +8691,9 @@ very-muted-foreground: #888888</pre>
 <div created="20160913142549440" modified="20160920181154327" title="$:/view">
 <pre>pop</pre>
 </div>
+<div created="20160921170255341" modified="20160928190812030" title="101">
+<pre>hide</pre>
+</div>
 <div created="20160913141905547" modified="20160913144736708" tags="Programs" title="599">
 <pre>This guide describes how to record 599 activities and comments in OSOS. It will demonstrate how to record an OSOS Training Service, including how to attach the appropriate funding to the service. The guide will also provide instructions on how to end a service and the follow up that is required for specific customers. </pre>
 </div>
@@ -8263,7 +8705,7 @@ very-muted-foreground: #888888</pre>
 <div created="20160920181437871" modified="20160921005151007" tags="[[Accessing the System]] PDF" title="Accessing the System PDF">
 <pre>Download or print the [[Accessing the System PDF|http://labor.ny.gov/workforcenypartners/osos/osos-guide-accessing-the-system.pdf]]</pre>
 </div>
-<div created="20160919202855005" modified="20160921005106799" tags="[[Accessing the System]] Video" title="Accessing the System Video">
+<div created="20160919202855005" modified="20160921183400227" tags="[[Accessing the System]] Videos" title="Accessing the System Video">
 <pre>&lt;iframe width=&quot;854&quot; height=&quot;480&quot; src=&quot;https://www.youtube.com/embed/m_XxF-kXdRs&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;</pre>
 </div>
 <div title="account_request_form.pdf" type="application/pdf">
@@ -8362,6 +8804,9 @@ individuals with disabilities&lt;br /&gt;
 <div created="20160913153846380" modified="20160913153855673" tags="Programs" title="Displaced Homemaker">
 <pre></pre>
 </div>
+<div created="20161004001209711" modified="20161004001225174" tags="Library" title="Editor's Library">
+<pre></pre>
+</div>
 <div created="20160830014514892" document="Employability Profile PDF" modified="20160920190521020" tags="Guides" title="Employability Profile">
 <pre>A guide for creating a complete customer profile in OSOS for Adult and Dislocated Workers. The purpose is to ensure that the customer maximizes the opportunity to secure employment.
 
@@ -8369,6 +8814,9 @@ individuals with disabilities&lt;br /&gt;
 </div>
 <div created="20160920190457804" modified="20160920190510484" tags="" title="Employability Profile PDF">
 <pre>Download or print the [[Employability Profile PDF|http://labor.ny.gov/workforcenypartners/osos/OSOS-Guide-Employability-Profile.pdf]]</pre>
+</div>
+<div created="20160921182314066" modified="20160928192529528" tags="objectives" title="Formats">
+<pre>The idea is to provide a platform to appeal to a variety of users with a variety of viewing preferences. The wiki can be navigated in a linear or nonlinear fashion. That is, users can view &lt;&lt;tag Guides&gt;&gt; from start to finish or delve into a topic area that may span multiple &lt;&lt;tag Guides&gt;&gt;by following their own path of hyperlinks, tags, etc. There is also a set of &quot;how to&quot; &lt;&lt;tag Videos&gt;&gt; for those that prefer a guided walk through of using various sections of [[AOSOS]]. Lastly, the more traditional user can chose to download or print guides in &lt;&lt;tag PDF&gt;&gt;format. </pre>
 </div>
 <div created="20160919205005467" modified="20160920181656777" title="Guide: Accessing The System">
 <pre>[[Requesting Access]]&lt;br /&gt;
@@ -8394,6 +8842,76 @@ individuals with disabilities&lt;br /&gt;
 <div created="20160913153718271" modified="20160913153724381" tags="Programs" title="LEAP">
 <pre></pre>
 </div>
+<div caption="Linking" created="20131205155230596" modified="20161004001318037" tags="Library" title="Linking in WikiText" type="text/vnd.tiddlywiki">
+<pre>A key capability of WikiText is the ability to make links to other tiddlers or to external websites.
+
+! Manual Links
+
+Link to a tiddler by title:
+
+```
+[[Tiddler Title]]
+```
+
+To link to a tiddler and specify the text of the link:
+
+```
+[[Displayed Link Title|Tiddler Title]]
+```
+
+You can also create a link from the editor toolbar. Click ''link'' ({{$:/core/images/link}}), and search and select a tiddler.
+
+! ~CamelCase Links
+
+For tiddler titles that match the CamelCase rules, just typing the title without double square brackets will automatically create a link.
+
+You can suppress a link from being recognised by preceding it with `~`. For example:
+
+&lt;&lt;wikitext-example src:&quot;* ~HelloThere is not a link
+* ~http://google.com/ is not a link&quot;&gt;&gt;
+
+! External Links
+
+To link to an external [[resource|https://en.wikipedia.org/wiki/Web_resource]] such as a website or a file, type its //full// [[URL|https://en.wikipedia.org/wiki/URL]], including the [[URI scheme|https://en.wikipedia.org/wiki/URI_scheme]] such as a protocol (e.g. `http://`, `file://`) or `mailto`:
+
+```
+http://tiddlywiki.com/
+
+[[TW5|http://tiddlywiki.com/]]
+
+[[Mail me|mailto:me@where.net]]
+```
+
+For this syntax to work, the URL has to be recognisable as a URL. Otherwise, it is treated as a tiddler title. As a result, in case you want to link to a resource locatable using a relative path, use the extended syntax:
+
+```
+[ext[Open file|index.html]]
+
+[ext[Open file|./index.html]]
+
+[ext[Open file|../README.md]]
+```
+
+The extended syntax still works with full URLs, although in that case it is not necessary:
+
+```
+[ext[http://tiddlywiki.com]]
+
+[ext[TW5|http://tiddlywiki.com]]
+```
+
+You can also use the extended syntax to force an external link:
+
+```
+[ext[Donate|bitcoin:1aabbdd....?amount=0.001]]
+```
+
+! Customising Tiddler Links
+
+See the LinkWidget for details of the underlying widget used to implement tiddler links, including macros that can be used to customise its behaviour.
+
+</pre>
+</div>
 <div created="20160830014208534" document="Logging In PDF" modified="20160920190714132" tags="Guides" title="Logging In" video="Accessing the System Video">
 <pre>A guide for first-time users on accessing OSOS.
 
@@ -8405,6 +8923,13 @@ individuals with disabilities&lt;br /&gt;
 <div created="20160913192449898" modified="20160913193935797" tags="Acronyms" title="LWIA">
 <pre>''L''ocal ''W''orkforce ''I''nvestment ''A''rea</pre>
 </div>
+<div created="20160226193144705" creator="stevesunypoly" modified="20160921191715042" modifier="stevesunypoly" tags="MakingSlidersWork" title="MakingSlidersWork">
+<pre>|Download an [[Empty Edition]]|&lt;$appear&gt; {{Empty Edition}}&lt;/$appear&gt;|
+|Copy these tiddlers|&lt;&lt;list-links filter:&quot;[tag&lt;currentTiddler&gt;]&quot;&gt;&gt;|
+|Test in your wiki|&lt;&lt;slider &quot;Click here to show/hide the tiddler Testing the slider&quot; &quot;{{Testing the slider}}&quot; &quot;h3&quot;&gt;&gt; |
+
+</pre>
+</div>
 <div created="20160913172821630" modified="20160919204935586" tags="Guides" title="Navigating the System">
 <pre>This guide is intended to familiarize users  with the structural layout of OSOS, as well as explain how to navigate between the various screens. It is intended for new staff or users with little to no experience using OSOS. 
 
@@ -8413,15 +8938,19 @@ individuals with disabilities&lt;br /&gt;
 <div created="20160913142004455" modified="20160913142012630" tags="Programs" title="NEG">
 <pre></pre>
 </div>
-<div created="20160921012616603" modified="20160921012650529" tags="" title="New Tiddler 1">
-<pre></pre>
-</div>
 <div created="20160913153823001" modified="20160913153828721" tags="Programs" title="NYSERDA Green Jobs">
 <pre></pre>
 </div>
-<div created="20160921005236104" modified="20160921020001332" tags="Objectives" title="Objectives">
-<pre>My name is Adam Baertschi. Here you will find &lt;&lt;tag Objectives&gt;&gt; for my thesis project for the IDT Master's program. 
-I composed a list of &lt;&lt;tag Guides&gt;&gt; that can be viewed in different &lt;&lt;tag Formats&gt;&gt;</pre>
+<div created="20160921005236104" modified="20160928192345983" title="objectives">
+<pre>My name is Adam Baertschi. I am employed as a Workforce Programs Specialist with New York State's Department of Labor. As part of my job, I help to provide guidance on using the department's Customer Relationship Management system. In doing this, I've discovered a fairly major [[design problem|problem]] that needs a solution.
+
+Here you will find &lt;&lt;tag objectives&gt;&gt;for my thesis project as part of the IDT Master's program at SUNY Polytechnic Institute. The idea arose out of [[necessity|problem]].
+
+I have composed two tables for a quick, high-level overview of where to start. Within the table is a list of &lt;&lt;tag Guides&gt;&gt; with accompanying descriptions. They can be viewed hypertextually or two other&lt;&lt;tag Formats&gt;&gt;. &lt;br /&gt;
+
+There is a group of  &lt;&lt;reveal &quot;basic user guides&quot; &quot;Basic User Guide&quot; &quot;x100&quot;&gt;&gt;
+
+And a group of &lt;&lt;reveal &quot;program guides&quot; &quot;OSOS Guides by Program&quot; &quot;101&quot;&gt;&gt;</pre>
 </div>
 <div created="20160913141956363" modified="20160913142002778" tags="Programs" title="OJT">
 <pre></pre>
@@ -8461,6 +8990,11 @@ I composed a list of &lt;&lt;tag Guides&gt;&gt; that can be viewed in different 
 <div created="20160921005204183" modified="20160921005204183" tags="Formats" title="PDF">
 <pre></pre>
 </div>
+<div created="20160928012358323" modified="20160928192447140" tags="objectives" title="problem">
+<pre>To date, I am in the early stages of my Thesis Project for the Fall 2016 semester. To begin, I have identified a problem. In short, the problem is a comedy of riches. It is an abundance, a myriad, and a plethora of information. Information that serves as guidance to hundreds, if not thousands of staff members in the Reemployment Sector of the [[New York State Department of Labor|https://www.labor.ny.gov]]. The information is regarding how to use the Customer Relationship Management (CRM) program that is the lynchpin of the department’s ability to serve the public. Too much information is the problem. It cannot be easily sifted or refined by any given user in order for that user to find what they need, when they need it. In addition, the information available can be found in a multitude of locations. The same piece of guidance may exist in any one of these locations or appear in different forms across more than one location. If a given topic is located, it presents itself as a pdf document with a, most often, very large scroll bar. To say the least, it is unorganized, unkempt and can very often act an encumbrance rather than a support tool. 
+
+The CRM is known as America’s One Stop Operating System, which has been acronymized to AOSOS, and even further to simply OSOS. OSOS is used to keep records on customers being served by the department and aids in areas such as job searching, job matching, providing job referrals, documenting training services and funding eligibility, and recording mandatory obligations by customers collecting Unemployment Insurance Benefits. The system is used, not only by the Department of Labor, but by other partner agencies involved with serving the unemployed, underemployed, or those in search of a career change. Since it’s conception, it has continually grown into a massive database with a massive amount of options and functionality. A given user might only need to be familiar with a fraction of OSOS and therefore, might need only to find a bit of information that is buried within the haystack. </pre>
+</div>
 <div created="20160913142025601" modified="20160913142034287" tags="Programs" title="Rapid Response">
 <pre></pre>
 </div>
@@ -8470,7 +9004,7 @@ user account. If it is determined that an OSOS account is necessary for the staf
 perform their assigned tasks, the supervisor will complete the [[Account Request Form|account_request_form.pdf]] and
 submit it through the local OSOS Security Coordinator to the OSOS/REOS Central Support Unit. </pre>
 </div>
-<div caption="Macro to reveal contents of tiddler and link to tiddler" created="20160614154251311" creator="stevesunypoly" modified="20160921011056968" modifier="stevesunypoly" tags="$:/tags/Macro NewInThisWiki DesignWriteMacros" title="reveal macro">
+<div caption="Macro to reveal contents of tiddler and link to tiddler" created="20160614154251311" creator="stevesunypoly" modified="20160921175232519" modifier="stevesunypoly" tags="$:/tags/Macro NewInThisWiki DesignWriteMacros" title="reveal macro">
 <pre>\define reveal($buttontext$ $tiddler-to-transclude$ $statetiddler$)
 
 ''$buttontext$'': 
@@ -8516,6 +9050,66 @@ Go {{$:/DesignWrite/icons/goto-tiddler}}
 
 </pre>
 </div>
+<div created="20150611174216595" creator="stevesunypoly" modified="20160921173447750" modifier="stevesunypoly" source="http://tw5magick.tiddlyspot.com/" tags="template" title="slider">
+<pre>\define slider(label)
+&lt;$button popup=&quot;$:/state/$label$&quot; class=&quot;btn-invisible tw-slider&quot;&gt;
+&lt;$reveal type=&quot;match&quot; text=&quot;&quot; default=&quot;&quot; state=&quot;$:/state/$label$&quot;&gt;&amp;#x229E;&lt;/$reveal&gt;&lt;$reveal type=&quot;nomatch&quot; text=&quot;&quot; default=&quot;&quot; state=&quot;$:/state/$label$&quot;&gt;&amp;#x229F;&lt;/$reveal&gt; {{$label$||unwikified}}&lt;/$button&gt;
+&lt;$reveal type=&quot;nomatch&quot; text=&quot;&quot; default=&quot;&quot; state=&quot;$:/state/$label$&quot; animate=&quot;yes&quot;&gt;
+&lt;$transclude/&gt;
+&lt;/$reveal&gt;
+\end
+
+&lt;$macrocall $name=&quot;slider&quot; label={{!!title}}/&gt;</pre>
+</div>
+<div created="20140117095919771" creator="Stephan Hradek" description="A fix for Jeremy's slider macro." modified="20160226204152432" modifier="stevesunypoly" tags="toc" title="slider macro fix">
+<pre>``Note: This seems to be necessary...so ignore the note below. //steve 2/25/16.``
+
+''Note:'' The fix was only required in TW5 prior to 5.0.7beta.
+
+The slider Macro once shown by Jeremy on the groups does not always produce the expected result. Especially not when the label is a WikiWord. To work around this, I changed the macro a bit. The label is now transcluded using the [[unwikified]] template. This is its source:
+
+{{unwikified||code}}
+
+This is the slider macro's code:
+
+```
+\define slider(label,text)
+&lt;$button popup=&quot;$:/state/$label$&quot; class=&quot;btn-invisible tw-slider&quot;&gt;{{$label$||unwikified}}&lt;/$button&gt;
+&lt;$reveal type=&quot;nomatch&quot; text=&quot;&quot; default=&quot;&quot; state=&quot;$:/state/$label$&quot; animate=&quot;yes&quot;&gt;
+$text$
+&lt;/$reveal&gt;
+\end
+```
+
+And this is how to use the macro:
+
+```
+&lt;&lt;slider &quot;MyTest&quot; &quot;{{GettingStarted}}&quot;&gt;&gt;
+```</pre>
+</div>
+<div created="20140116210750583" creator="Stephan Hradek" description="Recreating the slider macro." modified="20160226193114139" modifier="stevesunypoly" tags="toc" title="slider macro global version">
+<pre>The [[global Macro|A global Macro - with limitations]] technique can be used to recreate sliders with the limitation that the label needs to be the title of the tiddler which should slide in.
+
+It is used like this:
+
+```
+{{Title of Tiddler to slide in||slider}}
+```
+
+This is what it will look like:
+
+{{GettingStarted||slider}}
+
+And this is the source of the  [[slider]] macro:
+
+{{slider||code}}
+
+If you want to use it, make sure to copy both required templates:
+
+* [[slider]]
+* [[unwikified]]
+</pre>
+</div>
 <div created="20160913153547080" modified="20160913153555384" tags="Programs" title="STC">
 <pre></pre>
 </div>
@@ -8525,17 +9119,91 @@ Go {{$:/DesignWrite/icons/goto-tiddler}}
 <div created="20160913201049687" modified="20160913201210163" tags="Access" title="System Requirements">
 <pre></pre>
 </div>
+<div created="20140904075400000" modified="20161004001246021" tags="Library" title="Tagging" type="text/vnd.tiddlywiki">
+<pre>Tagging is a way of organising tiddlers into categories. For example, if you had tiddlers representing various individuals, you could tag them as ''friend'', ''family'', ''colleague'' etc to indicate these people's relationships to you.
+
+A tag is in fact just a tiddler (or a potential tiddler), and it can have tags of its own. You can add any number of tags to the same tiddler.
+
+See [[Creating and editing tiddlers]] for instructions on how to tag.
+
+By tagging your tiddlers, you can view, navigate and organise your information in numerous additional ways:
+
+* The coloured tag pills on a tiddler give you quick access to all the other tiddlers with the same tag, as well as to the tiddler that represents the tag itself.
+
+* If a tiddler is serving as a tag, then the ''Tagging'' tab in its InfoPanel will show you which tiddlers are currently tagged with it.
+
+* The ''More'' tab of the sidebar has a ''Tags'' tab that presents an overview of all your tags and lets you access all your tagged tiddlers.
+
+* You can use [[filters|Filters]] to create lists of tiddlers based on their tags. You can then display any combination of the [[fields|TiddlerFields]] of those tiddlers. For example, you could build a glossary by listing the title and text of all tiddlers tagged ''Glossary''. Such lists can be formatted in any way you wish: e.g. bulleted, numbered or comma-separated.
+
+* There are a number of special ''system tags'' that control the layout of tiddlers and the entire ~TiddlyWiki page. See [[Page and tiddler layout customisation]] for instructions.
+
+There are two more things you can do with tags:
+
+! Set a tag's colour and icon
+
+You can use the {{$:/core/images/tag-button}} [[tag manager|$:/TagManager]], found on the ''Tags'' tab under ''More'' in the sidebar, to change the colour of a tag's pill or add an icon to the pill.
+
+* To change the colour, click the button in the ''Colour'' column to select from a colour picker. Alternatively, click the icon in the ''Info'' column, then type a [[CSS]] colour value in the ''Colour'' field
+* To change the icon, click the {{$:/core/images/down-arrow}} button in the ''Icon'' column and choose from the list of available icons
+
+! Change the order in which tags are listed
+
+By default, tagged tiddlers are listed in alphabetical order.
+
+If you want any other order, add a &lt;&lt;.flink ListField&gt;&gt; field to the tag tiddler, and set its value to be a [[list of the tiddlers|Title List]] in that order.
+
+The ''list'' field doesn't have to mention all of the tiddlers. See the [[precise rules|Order of Tagged Tiddlers]] ~TiddlyWiki uses to order tagged tiddlers.
+</pre>
+</div>
+<div created="20160226204317281" creator="stevesunypoly" modified="20160226204356727" modifier="stevesunypoly" tags="MakingSlidersWork" title="Testing the slider">
+<pre>This is the text of the tiddler, [[Testing the slider]].</pre>
+</div>
+<div created="20160928013632503" modified="20160928013853046" tags="objectives" title="The Memex">
+<pre>https://en.wikipedia.org/wiki/Memex
+
+“device in which individuals would compress and store all of their books, records, and communications, ‘mechanized so that it may be consulted with exceeding speed and flexibility.’</pre>
+</div>
 <div created="20160913142056232" modified="20160913142104915" tags="Programs" title="Ticket to Work">
 <pre></pre>
 </div>
 <div created="20160913141931516" modified="20160913141938356" tags="Programs" title="Trade Act">
 <pre></pre>
 </div>
+<div created="20141129194651420" modified="20161004001611507" tags="Library" title="Transclusion">
+<pre>[[Transclusion|http://en.wikipedia.org/wiki/Transclusion]] is the process of referencing one tiddler &quot;A&quot; from another tiddler &quot;B&quot; such that the content of &quot;A&quot; appears to be a part of &quot;B&quot;.
+
+Copying and pasting content creates multiple copies of the same content in several different places. With transclusion, there can be a single copy and a special instruction in &quot;B&quot; which indicates the point at which content should be inserted from tiddler &quot;A&quot;.
+
+Note that if the content of &quot;A&quot; is modified then the modification automatically appears in &quot;B&quot;. This makes it easier to maintain repetitive content, by allowing every piece to be written in a single place, but viewed from many.
+
+The concept of transclusion plays an important role in the [[Philosophy of Tiddlers]] because it is the primary way in which small items of content are combined.
+
+To learn more:
+
+* [[Transclusion in WikiText]]
+* [[Transclusion Basic Usage]]
+* [[Transclusion with Templates]]
+* [[Transclusion and Substitution]]
+* TextReference
+* TemplateTiddlers
+* TranscludeWidget
+</pre>
+</div>
+<div created="20150611174316081" creator="stevesunypoly" modified="20150611174429568" modifier="stevesunypoly" source="http://tw5magick.tiddlyspot.com/" tags="template" title="unwikified">
+<pre>&lt;$view field=&quot;title&quot;/&gt;</pre>
+</div>
 <div created="20160913141847359" modified="20160913145540993" tags="Programs" title="Veterans">
 <pre>This guide describes the data entry involved with serving veteran customers in the Career Centers. It includes information on how to populate a complete record for veteran customers as well as the appropriate DVOP an LVER activities and comments to enter. </pre>
 </div>
 <div created="20160921005216271" modified="20160921005216271" tags="Formats" title="Video">
 <pre></pre>
+</div>
+<div created="20160928192554669" modified="20160928192708295" tags="Videos" title="Videos">
+<pre>Short video clips that provide a narrated walk-through on how to use specific areas of [[OSOS|AOSOS]].</pre>
+</div>
+<div created="20160921164728900" modified="20160928190809275" title="x100">
+<pre>hide</pre>
 </div>
 <div created="20160913141944162" modified="20160913141950154" tags="Programs" title="Youth">
 <pre></pre>
